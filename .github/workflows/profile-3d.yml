@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,5 +15,11 @@ jobs:
       - name: Generate 3D contribution graph
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
         with:
-          username: princejoshi312
-          theme: green
+          username: PrinceJoshi312
+          output_path: profile-3d-contrib
+
+      - name: Commit & push
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Generated 3D contribution graph"
+          add: "profile-3d-contrib"
